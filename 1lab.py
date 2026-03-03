@@ -12,6 +12,13 @@ class CurrencyRates:
     def __str__(self):
         return (f"Курс валюты {self.currency_name_1} к {self.currency_name_2} на дату {self.date} составляет {self.rate}")
     
+def menu():
+    print("===================================" \
+          " Меню для управления курсами валют " \
+          " 1. Добавить новый объект          " \
+          " 2. Удалить существующий объект    " \
+          "===================================")
+
 def main():
     if len(sys.argv) != 5:
         print("python 1lab.py валюта1 валюта2 курс гггг.мм.дд")
