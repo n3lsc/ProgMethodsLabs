@@ -1,9 +1,11 @@
 from dataclasses import dataclass
+
 from datetime import datetime
+
 import tkinter as tk
 from tkinter import ttk
-from typing import List
 
+from typing import List
 
 DATE_FORMAT = "%Y.%m.%d"
 DATA_FILE = "data.txt"
@@ -47,13 +49,11 @@ def save_currency_rates(filename: str, data: List[CurrencyRates]):
     """Save objects to file."""
     with open(filename, "w", encoding="utf-8") as file:
         for obj in data:
-            line = (
-                f"{obj.color} "
-                f"{obj.currency_name_1} "
-                f"{obj.currency_name_2} "
-                f"{obj.rate} "
-                f"{obj.date.strftime(DATE_FORMAT)}\n"
-            )
+            line = (f"{obj.color} "
+                    f"{obj.currency_name_1} "
+                    f"{obj.currency_name_2} "
+                    f"{obj.rate} "
+                    f"{obj.date.strftime(DATE_FORMAT)}\n")
             file.write(line)
 
 
@@ -85,8 +85,10 @@ class CurrencyApp:
         frame = tk.Frame(self.root)
         frame.pack(pady=10)
 
-        tk.Button(frame, text="Add", command=self.add_item).pack(side=tk.LEFT, padx=5)
-        tk.Button(frame, text="Delete", command=self.delete_item).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame, text="Add", command=self.add_item).pack(side=tk.LEFT,
+                                                                 padx=5)
+        tk.Button(frame, text="Delete",
+                  command=self.delete_item).pack(side=tk.LEFT, padx=5)
 
     def populate_table(self):
         """Display objects in table."""
@@ -94,8 +96,8 @@ class CurrencyApp:
             self.tree.insert(
                 "",
                 tk.END,
-                values=(obj.color, obj.currency_name_1,
-                        obj.currency_name_2, obj.rate, obj.date),
+                values=(obj.color, obj.currency_name_1, obj.currency_name_2,
+                        obj.rate, obj.date),
             )
 
     def add_item(self):
@@ -126,8 +128,8 @@ class CurrencyApp:
             self.tree.insert(
                 "",
                 tk.END,
-                values=(obj.color, obj.currency_name_1,
-                        obj.currency_name_2, obj.rate, obj.date),
+                values=(obj.color, obj.currency_name_1, obj.currency_name_2,
+                        obj.rate, obj.date),
             )
 
             save_currency_rates(DATA_FILE, self.data)
