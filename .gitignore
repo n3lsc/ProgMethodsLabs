@@ -1,1 +1,3 @@
-/.ai
+/.ai/
+/__pycache__/
+*.pyc

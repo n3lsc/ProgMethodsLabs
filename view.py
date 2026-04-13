@@ -1,3 +1,4 @@
+from model import CurrencyRates, load_currency_rates
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List
@@ -22,26 +23,6 @@ class CurrencyRates:
     currency_name_2: str
     rate: float
     date: datetime.date
-
-
-def parse_currency_rate(line: str) -> CurrencyRates:
-    parts = line.strip().split()
-
-    return CurrencyRates(
-        parts[0],
-        parts[1],
-        parts[2],
-        float(parts[3]),
-        datetime.strptime(parts[4], DATE_FORMAT).date(),
-    )
-
-
-def load_currency_rates(filename: str) -> List[CurrencyRates]:
-    rates = []
-    with open(filename, "r", encoding="utf-8") as file:
-        for line in file:
-            rates.append(parse_currency_rate(line))
-    return rates
 
 
 def save_currency_rates(filename: str, data: List[CurrencyRates]):
