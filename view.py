@@ -1,7 +1,7 @@
 import tkinter as tk
 import os
 
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 from tkinterweb import HtmlFrame
 
 from model import CurrencyModel
@@ -106,14 +106,19 @@ class CurrencyApp:
 
         frame = tk.Frame(self.root)
         frame.pack(pady=10)
-
         tk.Button(frame, text="Add", command=self.add_item).pack(side=tk.LEFT,
                                                                  padx=5)
         tk.Button(frame, text="Delete",
                   command=self.delete_item).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame, text="Run Commands",
+                  command=self.run_commands_file).pack(side=tk.LEFT, padx=5)
 
     # ---------- TABLE ----------
     def populate_table(self):
+        # clear existing
+        for child in self.tree.get_children():
+            self.tree.delete(child)
+
         for obj in self.model.data:
             self.tree.insert(
                 "",
@@ -121,6 +126,21 @@ class CurrencyApp:
                 values=(obj.color, obj.currency_name_1, obj.currency_name_2,
                         obj.rate, obj.date),
             )
+
+    def run_commands_file(self):
+        path = filedialog.askopenfilename(
+            title="Open commands file",
+            filetypes=[("Text files", "*.txt"), ("All files", "*")],
+        )
+
+        if not path:
+            return
+
+        try:
+            self.model.process_commands(path)
+            self.populate_table()
+        except Exception as e:
+            messagebox.showerror("Ошибка", str(e))
 
     # ---------- ADD ----------
     def add_item(self):
