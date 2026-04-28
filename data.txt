@@ -2,3 +2,4 @@ blue EUR RUB 96.3 2024.05.12 blalala
 purple bubls rubls 3.0 2020.12.11 ululu
 red USDT BTC 72048.92 2024.05.15 collhot
 black cool hot 9999.0 2044.12.12
+green money pirojki 110.0 2020.12.30 Proverka test

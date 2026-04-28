@@ -148,11 +148,15 @@ class CurrencyApp:
     def add_item(self):
         window = tk.Toplevel(self.root)
         window.title("Add")
+        # window.size(600, 400)
 
-        labels = ["Color", "Currency1", "Currency2", "Rate", "Date YYYY.MM.DD"]
         labels = [
-            "Color", "Currency1", "Currency2", "Rate", "Date YYYY.MM.DD",
-            "Comment"
+            "Color",
+            "Currency1",
+            "Currency2",
+            "Rate",
+            "Date YYYY.MM.DD",
+            "Comment",
         ]
         entries = []
 
@@ -187,7 +191,11 @@ class CurrencyApp:
             except Exception as e:
                 messagebox.showerror("Ошибка", str(e))
 
-        tk.Button(window, text="Save", command=save).grid(row=5, columnspan=2)
+        save_row = len(labels)
+        tk.Button(window, text="Save", command=save).grid(row=save_row,
+                                                          column=0,
+                                                          columnspan=2,
+                                                          pady=5)
 
     # ---------- DELETE ----------
     def delete_item(self):
