@@ -1,7 +1,7 @@
-ADD red; USD; EUR; 0.92; 2024.05.12
-ADD red; USDT; BTC; 72048.92; 2024.05.15
-ADD blue; EUR; RUB; 96.3; 2024.05.12
-ADD green; USD; RUB; 89.7; 2024.05.13
+ADD red; USD; EUR; 0.92; 2024.05.12; low_rate
+ADD red; USDT; BTC; 72048.92; 2024.05.15; crypto
+ADD blue; EUR; RUB; 96.3; 2024.05.12; market
+ADD green; USD; RUB; 89.7; 2024.05.13; stable
 REM rate < 1.0
 REM currency_name_1 == USD
 SAVE data_out.txt

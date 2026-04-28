@@ -95,11 +95,13 @@ class CurrencyApp:
     def create_widgets(self):
         self.tree = ttk.Treeview(
             self.root,
-            columns=("Color", "Currency1", "Currency2", "Rate", "Date"),
+            columns=("Color", "Currency1", "Currency2", "Rate", "Date",
+                     "Comment"),
             show="headings",
         )
 
-        for col in ("Color", "Currency1", "Currency2", "Rate", "Date"):
+        for col in ("Color", "Currency1", "Currency2", "Rate", "Date",
+                    "Comment"):
             self.tree.heading(col, text=col)
 
         self.tree.pack(fill=tk.BOTH, expand=True)
@@ -124,7 +126,7 @@ class CurrencyApp:
                 "",
                 tk.END,
                 values=(obj.color, obj.currency_name_1, obj.currency_name_2,
-                        obj.rate, obj.date),
+                        obj.rate, obj.date, getattr(obj, "comment", "")),
             )
 
     def run_commands_file(self):
@@ -148,6 +150,10 @@ class CurrencyApp:
         window.title("Add")
 
         labels = ["Color", "Currency1", "Currency2", "Rate", "Date YYYY.MM.DD"]
+        labels = [
+            "Color", "Currency1", "Currency2", "Rate", "Date YYYY.MM.DD",
+            "Comment"
+        ]
         entries = []
 
         for i, text in enumerate(labels):
@@ -164,13 +170,15 @@ class CurrencyApp:
                     entries[2].get(),
                     entries[3].get(),
                     entries[4].get(),
+                    entries[5].get() if len(entries) > 5 else "",
                 )
 
                 self.tree.insert(
                     "",
                     tk.END,
                     values=(obj.color, obj.currency_name_1,
-                            obj.currency_name_2, obj.rate, obj.date),
+                            obj.currency_name_2, obj.rate, obj.date,
+                            getattr(obj, "comment", "")),
                 )
 
                 self.model.save(DATA_FILE)
